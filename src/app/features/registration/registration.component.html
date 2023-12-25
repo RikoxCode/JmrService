@@ -1,0 +1,36 @@
+<div id="content">
+    <div class="card w-96 bg-base-100 shadow-xl" id="register-card">
+        <div class="card-body">
+            <h2 class="card-title">Register now!</h2>
+            <form id="register-card-form">
+                <label for="username">Username</label>
+                <input name="username" type="text" placeholder="Type username here"
+                    class="input input-bordered input-sm w-full max-w-xs" id="register-card-username-input"
+                    [value]="username" (keyup)="checkInputs($event)" />
+
+                <label for="email">E-Mail</label>
+                <input name="email" type="email" placeholder="Type email here"
+                    class="input input-bordered input-sm w-full max-w-xs" id="register-card-email-input" [value]="email"
+                    (keyup)="checkInputs($event)" />
+
+                <br >
+
+                <label for="password">Password</label>
+                <input name="password" type="password" placeholder="Type password here"
+                    class="input input-bordered input-sm w-full max-w-xs" id="register-card-password-input"
+                    [value]="password" (keyup)="checkInputs($event)" />
+
+                <label for="password-check">Password</label>
+                <input name="password-check" type="password" placeholder="Type password twice here"
+                    class="input input-bordered input-sm w-full max-w-xs" id="register-card-password-check-input"
+                    [value]="password_check" (keyup)="checkPW($event)" />
+            </form>
+            <div class="card-actions justify-end mt-5">
+                <button class="btn btn-info" [disabled]="show" (click)="register()">Register</button>
+            </div>
+            <div class="card-footer mt-5">
+                <a href="/login">Already have an account? <b>Log-in here!</b></a>
+            </div>
+        </div>
+    </div>
+</div>

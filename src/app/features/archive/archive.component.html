@@ -1,0 +1,14 @@
+<div id="content" *ngIf="isLoggedIn; else notLoggedIn">
+    <div *ngIf="isRequested; else notRequested">
+        <app-archive-datatable [items]="archive_items" (reloadData)="reloadData($event)"></app-archive-datatable>
+    </div>
+    <ng-template #notRequested>
+        <span class="loading loading-dots loading-lg"></span>
+    </ng-template>
+</div>
+
+<ng-template #notLoggedIn>
+    <div id="content">
+        <app-not-logged-in></app-not-logged-in>
+    </div>
+</ng-template>

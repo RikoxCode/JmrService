@@ -1,0 +1,85 @@
+.archive-item-title{
+    min-width: 150px;
+}
+
+.archive-item:hover{
+    background-color: #f5f5f531;
+    cursor: pointer;
+}
+
+#searchbar-form{
+    position: relative;
+    top: 50%;
+    left: 90%;
+    transform: translate(-50%,-50%);
+    transition: all 1s;
+    width: 50px;
+    height: 50px;
+    box-sizing: border-box;
+    border-radius: 25px;
+    padding: 5px;
+}
+
+#searchbar-form > input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;;
+    height: 42.5px;
+    line-height: 30px;
+    outline: 0;
+    border: 0;
+    display: none;
+    font-size: 1em;
+    border-radius: 20px;
+    padding: 0 20px;
+}
+
+.fa{
+    box-sizing: border-box;
+    padding: 10px;
+    width: 42.5px;
+    height: 42.5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 1.2em;
+    transition: all 1s;
+}
+
+#searchbar-form:hover,
+#searchbar-form:valid{
+    width: 200px;
+    cursor: pointer;
+}
+
+#searchbar-form:hover input,
+#searchbar-form:valid input{
+    display: block;
+}
+
+#searchbar-form:hover .fa,
+#searchbar-form:valid .fa{
+    background: #07051a;
+    color: white;
+}
+
+
+#searchbar-form > a {
+  display: none;
+  position: absolute;
+  top: 70px;
+  bottom:0;
+  left: 0;
+  right: 0;
+  font-size: 20px;
+  color: white;
+  text-align: center; 
+  width: 100%;
+}
+
+#searchbar-form:valid a {
+  display: block;
+}

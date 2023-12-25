@@ -1,0 +1,20 @@
+#login-card{
+    margin: 0px auto;
+    max-width: 800px;
+}
+
+#login-card-img{
+    max-width: 300px;
+    margin: 15px;
+    margin-bottom: -15px;
+}
+
+#login-card-form{
+    display: flex;
+    flex-direction: column;
+}
+
+#login-card-form > label{
+    margin-top: 4%;
+    margin-bottom: 2%;
+}

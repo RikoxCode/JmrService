@@ -1,0 +1,37 @@
+/* src/app/not-logged-in/not-logged-in.component.css */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+}
+
+.icon {
+    font-size: 3em;
+    color: #f00;
+    /* rote Farbe für das Ausrufezeichen-Icon */
+    margin-bottom: 20px;
+}
+
+.message {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-button {
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

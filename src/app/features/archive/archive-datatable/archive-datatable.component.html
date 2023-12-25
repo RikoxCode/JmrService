@@ -1,0 +1,126 @@
+<!-- archive-datatable.component.html -->
+<div id="archive-datatable">
+    <div class="overflow-x-auto">
+        <div class="archive-tooltable">
+            <div>
+                <button (click)="createItemModal()" class="btn btn-success">Create Tool</button>
+                <form id="searchbar-form">
+                    <input type="search" (keyup)="checkInputs($event)" required>
+                    <i class="fa fa-search"></i>
+                    <a id="clear-btn" (click)="clearInput"></a>
+                  </form>
+                <input type="text" placeholder="Search..." [hidden]="!isSearchBarDisabled">
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th (click)="sort('title')">Titel</th>
+                    <th (click)="sort('group')">Gruppe</th>
+                    <th (click)="sort('grad')">Härtegrad</th>
+                    <th (click)="sort('stil')">Stil</th>
+                    <th (click)="sort('duration')">Spielzeit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="archive-item" *ngFor="let item of filteredItems" (click)="openDetailModal(item)">
+                    <td class="archive-item-title">{{ item.title }}</td>
+                    <td>{{ item['group'] }}</td>
+                    <td>{{ item['grad'] !== '' ? item['grad'] : 'undefined' }}</td>
+                    <td>{{ item['stil'] !== '' ? item['stil'] : 'undefined' }}</td>
+                    <td>{{ item['duration'] !== '' ? item['duration'] : 'undefined' }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <dialog id="detailModal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <h3 class="font-bold text-lg">Detailed Informations</h3>
+                <div *ngFor="let item of modal_item | keyvalue">
+                    <p class="py-4">
+                        <span style="font-weight: 500;">{{item.key}}: </span>
+                        <span *ngIf="item.value !== null; else novalue">{{item.value}}</span>
+                        <ng-template #novalue><span style="color: red;">no data</span></ng-template>
+                    </p>
+                </div>
+                <div class="modal-action">
+                    <form method="dialog" class="flex w-full">
+                        <div class="flex-1">
+                            <button class="btn btn-warning" (click)="editItemModal(modal_item)">Edit</button>
+                            <button class="btn btn-error" (click)="deleteItemModal(modal_item)">Delete</button>
+                        </div>
+                        <button class="btn">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+        <dialog id="createModal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <h3 class="font-bold text-lg">Design your own notemeta item</h3>
+                <div *ngFor="let item of createInputFields | keyvalue">
+                    <p class="py-4">
+                        <span style="font-weight: 500;">{{item.key}}: </span>
+                        <span>
+                            <input class="input input-bordered input-sm w-full max-w-xs" [placeholder]="item.value" />
+                        </span>
+                    </p>
+                </div>
+                <div class="modal-action">
+                    <form method="dialog" class="flex w-full">
+                        <button class="btn">Fertig stellen</button>
+                        <button class="btn">Abbrechen</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+        <dialog id="editModal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <h3 class="font-bold text-lg">Detailed Informations</h3>
+                <div *ngFor="let item of modal_item | keyvalue">
+                    <p class="py-4">
+                        <span style="font-weight: 500;">{{item.key}}: </span>
+                        <span *ngIf="item.value !== null; else illegalvalue">
+                            <input class="input input-bordered input-sm w-full max-w-xs" [(ngModel)]="item.value" />
+                        </span>
+                        <ng-template #illegalvalue>
+                            <ng-container *ngIf="isIllegalKeyWord.includes(item.key); else novalue">
+                                <input class="input input-bordered input-sm w-full max-w-xs" [(ngModel)]="item.value" [disabled]="true"/>
+                            </ng-container>
+                        </ng-template>
+                        <ng-template #novalue>
+                            <span style="color: red;">
+                                <input class="input input-bordered input-sm w-full max-w-xs" [value]="'no data'" />
+                            </span>
+                        </ng-template>
+                    </p>
+                </div>
+                <div class="modal-action">
+                    <form method="dialog" class="flex w-full">
+                        <div class="flex-1">
+                            <button class="btn btn-warning" (click)="editItemModal(modal_item)">Edit</button>
+                            <button class="btn btn-error" (click)="deleteItemModal(modal_item)">Delete</button>
+                        </div>
+                        <button class="btn">Fertig stellen</button>
+                        <button class="btn">Abbrechen</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+        <dialog id="deleteModal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <h3 class="font-bold text-lg">Deletion detected</h3>
+                <p>Are you sure you want to delete this item with these two values?</p>
+                <details>
+                    <summary>Details</summary>
+                    <p>Id: {{modal_item['id']}}</p>
+                    <p>Title: {{modal_item['Titel']}}</p>
+                </details>
+                <div class="modal-action">
+                    <form method="dialog" class="flex w-full">
+                        <button class="btn" (click)="deleteExecute(modal_item['id'])">Fertig stellen</button>
+                        <button class="btn">Abbrechen</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+    </div>
+</div>

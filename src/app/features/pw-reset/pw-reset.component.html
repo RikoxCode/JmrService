@@ -1,0 +1,37 @@
+<div class="hero mt-20">
+    <div class="hero-content flex-col lg:flex-row-reverse">
+        <div class="text-center lg:text-left ml-11">
+            <h1 class="text-5xl font-bold">Change Password!</h1>
+            <p class="py-6">Discover how easy and secure it is to reset or change your password with us. We're here to help you ensure the security of your account, providing all the necessary tools and guidance you need.</p>
+        </div>        
+        <div class="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+            <form class="card-body">
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">Your password</span>
+                    </label>
+                    <input type="password" id="login-card-old-password-input" placeholder="Your password" class="input input-bordered"
+                        (keyup)="checkInputs($event)" required />
+                </div>
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">New password</span>
+                    </label>
+                    <input type="password" id="login-card-new-password-input" placeholder="new password" class="input input-bordered"
+                        (keyup)="checkInputs($event)" required />
+                </div>
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">Repeat password</span>
+                    </label>
+                    <input type="password" id="login-card-new-password-input-second" placeholder="repeat new password"
+                        class="input input-bordered" (keyup)="checkInputs($event)" required />
+                </div>
+                <div class="form-control mt-6">
+                    <button class="btn btn-primary" [disabled]="show" (click)="changePW()">Change password</button>
+                </div>
+                <a href="/registration" class="mt-5 text-sm">Don't have an account? <b>Register here!</b></a>
+            </form>
+        </div>
+    </div>
+</div>
